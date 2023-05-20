@@ -2,7 +2,7 @@
     <v-app>
         <navigation-menu-page/>
         <v-main>
-            <router-view/>
+            <router-view align="center"/>
         </v-main>
     </v-app>
 </template>

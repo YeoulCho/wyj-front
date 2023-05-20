@@ -20,7 +20,8 @@
                     </v-radio-group>
                 </tr>
                 <tr>
-                    <v-text-field></v-text-field>
+                    <v-text-field v-model="businessNumber" label="BUSINESS NUMBER" placeholder="숫자 10자리"
+                                  :rules="[rules.businessNumber10DigitRule, rules.businessNumberDigitRule]"></v-text-field>
                 </tr>
             </table>
         </form>
@@ -40,14 +41,19 @@ export default {
             email: "",
             password: "",
             role: "NORMAL",
+            businessNumber: "",
+            rules: {
+                businessNumber10DigitRule: (value) => value.length === 10 || "Please enter a 10-digit number",
+                businessNumberDigitRule: (value) => Number(value) || "Please enter a 10-digit number"
 
+            }
         }
     },
     methods: {
         async submit() {
-            const {email, password, role} = this
+            const {email, password, role, businessNumber} = this
 
-            await this.requestMemberSignUp({email, password, role})
+            await this.requestMemberSignUp({email, password, role, businessNumber})
         },
         ...mapActions(memberModule, ['requestMemberSignUp'])
     }
