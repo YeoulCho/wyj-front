@@ -13,7 +13,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <v-radio-group inline v-model="role">
+                    <v-radio-group inline v-model="roleType">
                         <v-radio label="NORMAL" value="NORMAL" ></v-radio>
                         <v-radio label="BUSINESS" value="BUSINESS"></v-radio>
                         <v-radio label="ADMIN" value="ADMIN" ></v-radio>
@@ -40,7 +40,7 @@ export default {
         return {
             email: "",
             password: "",
-            role: "NORMAL",
+            roleType: "NORMAL",
             businessNumber: "",
             rules: {
                 businessNumber10DigitRule: (value) => value.length === 10 || "Please enter a 10-digit number",
@@ -51,9 +51,9 @@ export default {
     },
     methods: {
         async submit() {
-            const {email, password, role, businessNumber} = this
+            const {email, password, roleType, businessNumber} = this
 
-            await this.requestMemberSignUp({email, password, role, businessNumber})
+            await this.requestMemberSignUp({email, password, roleType, businessNumber})
         },
         ...mapActions(memberModule, ['requestMemberSignUp'])
     }
