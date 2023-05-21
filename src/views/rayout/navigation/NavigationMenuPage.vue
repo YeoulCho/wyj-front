@@ -6,19 +6,24 @@ export default defineComponent({
         data() {
             return {
                 memberId: null,
-                isLogin: false,
+                // isLogin: false,
                 loginComp: false,
             }
         },
         mounted() {
             this.memberId = localStorage.getItem("loginUserInfo")
-            this.isLogin = this.memberId !== null;
+            // this.isLogin = this.memberId !== null;
         },
         methods: {
             tryLogin() {
                 this.$emit('tryLogin')
             }
-        }
+        },
+    computed: {
+            isLogin() {
+                return localStorage.getItem('userToken')===null?false:true
+            }
+    }
     },
 )
 </script>
@@ -39,16 +44,18 @@ export default defineComponent({
             </router-link>
 
             <v-spacer></v-spacer>
-            <router-link to="/member-sign-up">
-                <v-btn v-if="!isLogin">
-                    <span>회원가입</span>
-                    <v-icon right>mdi-account-plus-outline</v-icon>
+            <v-container v-if="!isLogin">
+                <router-link to="/member-sign-up">
+                    <v-btn >
+                        <span>회원가입</span>
+                        <v-icon right>mdi-account-plus-outline</v-icon>
+                    </v-btn>
+                </router-link>
+                <v-btn @click="tryLogin">
+                    <span>로그인</span>
+                    <v-icon right>mdi-account-check-outline</v-icon>
                 </v-btn>
-            </router-link>
-            <v-btn v-if="!isLogin" @click="tryLogin">
-                <span>로그인</span>
-                <v-icon right>mdi-account-check-outline</v-icon>
-            </v-btn>
+            </v-container>
         </v-app-bar>
     </nav>
 </template>

@@ -35,6 +35,9 @@ export default {
             const {email, password} = this
 
             await this.requestMemberLogin({email, password})
+                .then((res) => localStorage.setItem('userToken', res.data.userToken))
+
+            this.$emit('cancel')
         },
         ...mapActions(memberModule, ['requestMemberLogin'])
     }
