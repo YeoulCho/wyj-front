@@ -17,11 +17,15 @@ export default defineComponent({
         methods: {
             tryLogin() {
                 this.$emit('tryLogin')
+            },
+            tryLogout() {
+                this.$emit('tryLogout')
             }
         },
     computed: {
             isLogin() {
-                return localStorage.getItem('userToken')===null?false:true
+                console.log(localStorage)
+                return localStorage.getItem('userToken')==='null'?false:true
             }
     }
     },
@@ -42,9 +46,10 @@ export default defineComponent({
                 </v-toolbar-title>
             </v-btn>
             </router-link>
-
             <v-spacer></v-spacer>
-            <v-container v-if="!isLogin">
+
+
+            <div v-if="!isLogin">
                 <router-link to="/member-sign-up">
                     <v-btn >
                         <span>회원가입</span>
@@ -55,7 +60,14 @@ export default defineComponent({
                     <span>로그인</span>
                     <v-icon right>mdi-account-check-outline</v-icon>
                 </v-btn>
-            </v-container>
+            </div>
+            <div v-if="isLogin">
+
+                <v-btn @click="tryLogout">
+                    <span>로그아웃</span>
+                    <v-icon right>mdi-account-cancel-outline</v-icon>
+                </v-btn>
+            </div>
         </v-app-bar>
     </nav>
 </template>

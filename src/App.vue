@@ -1,11 +1,17 @@
 <template>
     <v-app>
-        <navigation-menu-page @tryLogin="tryLogin"/>
+        <navigation-menu-page @tryLogin="tryLogin" @tryLogout="tryLogout"/>
         <v-main>
             <router-view align="center"/>
             <v-overlay :value="loginComp">
                 <v-card>
                     <login-component @cancel='cancel'></login-component>
+                </v-card>
+            </v-overlay>
+            <v-overlay :value="logoutComp">
+                <v-card>
+                    <logout-component @cancel='cancel'></logout-component>
+                    
                 </v-card>
             </v-overlay>
         </v-main>
@@ -25,14 +31,16 @@
 
 import NavigationMenuPage from "@/views/rayout/navigation/NavigationMenuPage.vue";
 import LoginComponent from "@/components/member/LoginComponent.vue";
+import LogoutComponent from "@/components/member/LogoutComponent.vue";
 
 export default {
     name: 'App',
-    components: {LoginComponent, NavigationMenuPage},
+    components: {LogoutComponent, LoginComponent, NavigationMenuPage},
 
     data: () => ({
         //
         loginComp: false,
+        logoutComp: false,
     }),
     methods: {
         tryLogin() {
@@ -40,6 +48,10 @@ export default {
         },
         cancel() {
             this.loginComp = false
+            this.logoutComp = false
+        },
+        tryLogout() {
+            this.logoutComp = true
         }
     }
 };
