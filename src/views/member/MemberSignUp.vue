@@ -20,7 +20,7 @@
                     </v-radio-group>
                 </tr>
                 <tr>
-                    <v-text-field v-model="businessNumber" label="BUSINESS NUMBER" placeholder="숫자 10자리"
+                    <v-text-field v-if="role==='BUSINESS'" v-model="businessNumber" label="BUSINESS NUMBER" placeholder="숫자 10자리"
                                   :rules="[rules.businessNumber10DigitRule, rules.businessNumberDigitRule]"></v-text-field>
                 </tr>
             </table>

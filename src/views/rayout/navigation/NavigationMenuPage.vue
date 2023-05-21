@@ -1,18 +1,23 @@
 <script>
 import {defineComponent} from 'vue'
-import router from "@/router";
 
 export default defineComponent({
         name: "NavigationMenuPage",
         data() {
             return {
                 memberId: null,
-                isLogin: false
+                isLogin: false,
+                loginComp: false,
             }
         },
         mounted() {
             this.memberId = localStorage.getItem("loginUserInfo")
             this.isLogin = this.memberId !== null;
+        },
+        methods: {
+            tryLogin() {
+                this.$emit('tryLogin')
+            }
         }
     },
 )
@@ -35,11 +40,15 @@ export default defineComponent({
 
             <v-spacer></v-spacer>
             <router-link to="/member-sign-up">
-            <v-btn v-if="!isLogin">
-                <span>회원가입</span>
-                <v-icon right>mdi-account-plus-outline</v-icon>
-            </v-btn>
+                <v-btn v-if="!isLogin">
+                    <span>회원가입</span>
+                    <v-icon right>mdi-account-plus-outline</v-icon>
+                </v-btn>
             </router-link>
+            <v-btn v-if="!isLogin" @click="tryLogin">
+                <span>로그인</span>
+                <v-icon right>mdi-account-check-outline</v-icon>
+            </v-btn>
         </v-app-bar>
     </nav>
 </template>
