@@ -8,15 +8,27 @@ export default defineComponent({
                 memberId: null,
                 // isLogin: false,
                 loginComp: false,
-                items: [
-                { title: '게시판', icon: 'mdi-clipboard-text-outline', route: '/board-list-page'},
-                { title: 'Photos', icon: 'mdi-image' },
-                { title: 'About', icon: 'mdi-help-box', route: 'about' },
-                ],
+                // items: [
+                // { title: '게시판', icon: 'mdi-clipboard-text-outline', route: '/board-list-page'},
+                // { title: 'Photos', icon: 'mdi-image' },
+                // { title: 'About', icon: 'mdi-help-box', route: 'about' },
+                // ],
                 right: null,
                 mini: true,
                 drawer: true,
                 // navigation_drawer: false,
+                Boards: [
+                    ['Q&A', '/board-list-page'],
+                    ['Review'],
+                    ['Return']
+                ],
+                SHOPPING: [
+                    ['Top'],
+                    ['Botton'],
+                    ['Dress'],
+                    ['Outer'],
+                    ['Acc']
+                ]
             }
         },
         mounted() {
@@ -107,7 +119,43 @@ export default defineComponent({
           dense
           nav
         >
+        <v-list-group
+          :value="false"
+          no-action
+          sub-group
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title>SHOPPING</v-list-item-title>
+            </v-list-item-content>
+          </template>
           <v-list-item
+            v-for="([title, route], i) in SHOPPING"
+            :key="i"
+            link
+          >
+            <v-list-item-title v-text="title"></v-list-item-title>
+            </v-list-item>
+        </v-list-group>
+        <v-list-group
+          :value="false"
+          no-action
+          sub-group
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title>게시판</v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item
+            v-for="([title, route], i) in Boards"
+            :key="i"
+            :to="route"
+          >
+            <v-list-item-title v-text="title"></v-list-item-title>
+            </v-list-item>
+        </v-list-group>
+          <!-- <v-list-item
             v-for="item in items"
             :key="item.title"
             :to="item.route"
@@ -119,7 +167,7 @@ export default defineComponent({
             <v-list-item-content>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
-          </v-list-item>
+          </v-list-item> -->
         </v-list>
       </v-navigation-drawer>
     </nav>
