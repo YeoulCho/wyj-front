@@ -1,5 +1,5 @@
 import axiosInst from '@/utility/axiosInst'
-import {REQUEST_BOARD_LIST_TO_SPRING} from "@/store/board/mutation-types";
+import {REQUEST_BOARD_LIST_TO_SPRING, REQUEST_BOARD_TO_SPRING} from "@/store/board/mutation-types";
 
 export default{
     requestWriteBoardToSpring({},payload){
@@ -17,6 +17,12 @@ export default{
     .then((res)=>{
         commit(REQUEST_BOARD_LIST_TO_SPRING, res.data)
     })
+    },
+    requestBoardToSpring({commit}, boardId) {
+        axiosInst.get(`/board/${boardId}`)
+            .then((res) => {
+                commit(REQUEST_BOARD_TO_SPRING, res.data)
+            })
     }
 
 }

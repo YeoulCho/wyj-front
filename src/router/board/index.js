@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import BoardWritePage from '@/views/board/BoardWritePage.vue'
 import BoardListPage from '@/views/board/BoardListPage.vue'
+import BoardReadPage from "@/views/board/BoardReadPage.vue";
 Vue.use(VueRouter)
 
 const BoardRoutes = [
@@ -16,6 +17,12 @@ const BoardRoutes = [
     name: 'BoardListPage',
     component: BoardListPage
   },
+  {
+    path: '/board-read-page/:baordId',
+    name: 'BoardReadPage',
+    component: BoardReadPage,
+    props: true
+  }
   
 
 ]
