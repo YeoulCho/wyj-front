@@ -15,14 +15,18 @@
                 </v-card>
             </v-overlay>
         </v-main>
-        <v-footer padless>
-            <v-col class="align-center text-center">
+        <v-footer padless height="100px">
+            <div class="box1">
+                <h4>+82 00-0000-000</h4>
+                <h6>AM.10:30 - PM.06:00 / LUNCH PM.12:00 -PM.14:00</h6>
+                <h6>SAT.SUN HOLIDAY OFF</h6>
+                <h6>[카카오뱅크] 7979-44-67548 (주)WYJ</h6>
+            </div>
+            <!-- <v-col class="align-center text-center">
                     <v-btn icon :href='`https://github.com/eddi-study/wyj-front`'>
-                        <v-icon size="34px">mdi-github</v-icon>
+                        <v-icon size="24px">mdi-github</v-icon>
                     </v-btn>
-                <v-card-text class="pt-0 black--text">WYJ</v-card-text>
-
-            </v-col>
+            </v-col> -->
         </v-footer>
     </v-app>
 </template>
@@ -59,3 +63,12 @@ export default {
     }
 };
 </script>
+<style scoped>
+.box1{
+  position: fixed;
+  bottom: 10px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+</style>
