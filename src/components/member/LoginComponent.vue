@@ -35,6 +35,10 @@ export default {
             const {email, password} = this
 
             await this.requestMemberLogin({email, password})
+                .then((res) => {localStorage.setItem('userToken', res.data.userToken)
+                    this.$router.go('/')})
+
+            this.$emit('cancel')
         },
         ...mapActions(memberModule, ['requestMemberLogin'])
     }

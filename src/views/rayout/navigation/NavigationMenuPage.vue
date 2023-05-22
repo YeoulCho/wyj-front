@@ -6,19 +6,28 @@ export default defineComponent({
         data() {
             return {
                 memberId: null,
-                isLogin: false,
+                // isLogin: false,
                 loginComp: false,
             }
         },
         mounted() {
             this.memberId = localStorage.getItem("loginUserInfo")
-            this.isLogin = this.memberId !== null;
+            // this.isLogin = this.memberId !== null;
         },
         methods: {
             tryLogin() {
                 this.$emit('tryLogin')
+            },
+            tryLogout() {
+                this.$emit('tryLogout')
             }
-        }
+        },
+    computed: {
+            isLogin() {
+                console.log(localStorage)
+                return localStorage.getItem('userToken')==='null'?false:true
+            }
+    }
     },
 )
 </script>
@@ -37,18 +46,28 @@ export default defineComponent({
                 </v-toolbar-title>
             </v-btn>
             </router-link>
-
             <v-spacer></v-spacer>
-            <router-link to="/member-sign-up">
-                <v-btn v-if="!isLogin">
-                    <span>회원가입</span>
-                    <v-icon right>mdi-account-plus-outline</v-icon>
+
+
+            <div v-if="!isLogin">
+                <router-link to="/member-sign-up">
+                    <v-btn >
+                        <span>회원가입</span>
+                        <v-icon right>mdi-account-plus-outline</v-icon>
+                    </v-btn>
+                </router-link>
+                <v-btn @click="tryLogin">
+                    <span>로그인</span>
+                    <v-icon right>mdi-account-check-outline</v-icon>
                 </v-btn>
-            </router-link>
-            <v-btn v-if="!isLogin" @click="tryLogin">
-                <span>로그인</span>
-                <v-icon right>mdi-account-check-outline</v-icon>
-            </v-btn>
+            </div>
+            <div v-if="isLogin">
+
+                <v-btn @click="tryLogout">
+                    <span>로그아웃</span>
+                    <v-icon right>mdi-account-cancel-outline</v-icon>
+                </v-btn>
+            </div>
         </v-app-bar>
     </nav>
 </template>
