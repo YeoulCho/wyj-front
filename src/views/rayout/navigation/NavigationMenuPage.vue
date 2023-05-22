@@ -8,6 +8,15 @@ export default defineComponent({
                 memberId: null,
                 // isLogin: false,
                 loginComp: false,
+                items: [
+                { title: '게시판', icon: 'mdi-clipboard-text-outline', route: '/board-list-page'},
+                { title: 'Photos', icon: 'mdi-image' },
+                { title: 'About', icon: 'mdi-help-box', route: 'about' },
+                ],
+                right: null,
+                mini: true,
+                drawer: true,
+                // navigation_drawer: false,
             }
         },
         mounted() {
@@ -35,7 +44,8 @@ export default defineComponent({
 <template>
     <nav>
         <v-app-bar>
-            <v-app-bar-nav-icon/>
+            <v-app-bar-nav-icon app 
+            @click="navigation_drawer = !navigation_drawer"/>
             <router-link to="/">
             <v-btn>
                 <v-img class="mx-2" src="@/assets/logo.png"
@@ -69,6 +79,49 @@ export default defineComponent({
                 </v-btn>
             </div>
         </v-app-bar>
+      <v-navigation-drawer 
+      permanent
+      app
+      expand-on-hover
+      :mini-variant.sync="mini">
+      <!-- <v-navigation-drawer app v-model="navigation_drawer" expand-on-hover> -->
+
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="text-h6">
+              WYJ_BOARD
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              원기,여울,지원
+            </v-list-item-subtitle>
+            
+          </v-list-item-content>
+            <!-- <v-btn icon @click.stop="mini = !mini">
+                <v-icon>mdi-chevron-left</v-icon>
+            </v-btn> -->
+        </v-list-item>
+  
+        <v-divider></v-divider>
+  
+        <v-list
+          dense
+          nav
+        >
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            :to="item.route"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+  
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
     </nav>
 </template>
 
