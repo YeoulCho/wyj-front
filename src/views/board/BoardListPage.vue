@@ -39,8 +39,8 @@ export default {
         return {
             headerTitle: [
                 { text: '번호', value: 'boardId', width: "70px" },
-                { text: '제목', value: 'title', width: "200px" },
-                { text: '작성자', value: 'memberId', width: "100px" },
+                { text: '제목', value: 'title', width: "200px", sortable: false },
+                { text: '작성자', value: 'memberId', width: "100px",sortable: false },
                 { text: '등록일자', value: 'createDate', width: "100px" },
             ],
             selectedItems: [],
