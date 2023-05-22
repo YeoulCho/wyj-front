@@ -32,10 +32,13 @@
 import NavigationMenuPage from "@/views/rayout/navigation/NavigationMenuPage.vue";
 import LoginComponent from "@/components/member/LoginComponent.vue";
 import LogoutComponent from "@/components/member/LogoutComponent.vue";
-
 export default {
     name: 'App',
-    components: {LogoutComponent, LoginComponent, NavigationMenuPage},
+    components: {
+        LogoutComponent, 
+        LoginComponent, 
+        NavigationMenuPage,
+       },
 
     data: () => ({
         //
