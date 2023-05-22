@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <v-container>
         <div><h2>자유게시판</h2></div>
         <table style="margin-left: auto;">
@@ -48,7 +48,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(boardModule, ['boards']),
+        ...mapState(boardModule, ['boards'])
     },
     mounted () {
         this.requestBoardListToSpring()
@@ -59,7 +59,6 @@ export default {
     methods: {
         ...mapActions(boardModule, ['requestBoardListToSpring']),
         readRow (readValue) {
-            alert('게시물 읽기: ' + JSON.stringify(readValue))
             router.push({
                 name: 'BoardReadPage',
                 params: { boardId: readValue.boardId.toString() }
