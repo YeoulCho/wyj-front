@@ -4,8 +4,6 @@ import {
 } from './mutation-types'
 
 import axiosInst from '@/utility/axiosInst'
-import {REQUEST_BOARD_LIST_TO_SPRING, REQUEST_BOARD_TO_SPRING} from "@/store/board/mutation-types";
-
 
 export default{
     requestWriteBoardToSpring({},payload){
