@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import uiRouter from "@/router/uiRouter";
 import BoardRoutes from './board';
 import member from "@/router/member";
+import ProductRouter from './product';
 
 
 Vue.use(VueRouter)
@@ -25,6 +26,7 @@ const routes = [
       ...uiRouter,
       ...BoardRoutes,
       ...member,
+      ...ProductRouter
 
 
 ]

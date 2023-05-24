@@ -23,7 +23,7 @@ export default defineComponent({
                     ['Return']
                 ],
                 SHOPPING: [
-                    ['Top'],
+                    ['Top', '/product-top-list-page'],
                     ['Botton'],
                     ['Dress'],
                     ['Outer'],
@@ -132,7 +132,7 @@ export default defineComponent({
           <v-list-item
             v-for="([title, route], i) in SHOPPING"
             :key="i"
-            link
+            :to="route"
           >
             <v-list-item-title v-text="title"></v-list-item-title>
             </v-list-item>
