@@ -1,5 +1,6 @@
 <template>
-    <v-container>
+    <v-container class="background">
+        <v-card class="box" width="700">
         <form>
             <table width="50%">
                 <tr>
@@ -13,8 +14,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <v-radio-group inline v-model="roleType">
-                        <v-radio label="NORMAL" value="NORMAL" ></v-radio>
+                    <v-radio-group v-model="roleType" row>
+                        <v-radio label="NORMAL" value="NORMAL" aria-checked="true" ></v-radio>
                         <v-radio label="BUSINESS" value="BUSINESS"></v-radio>
                         <v-radio label="ADMIN" value="ADMIN" ></v-radio>
                     </v-radio-group>
@@ -24,9 +25,16 @@
                                   :rules="[rules.businessNumber10DigitRule, rules.businessNumberDigitRule]"></v-text-field>
                 </tr>
             </table>
-        </form>
-        <v-btn @click="$router.push('/')">취소</v-btn>
-        <v-btn @click="submit">회원 가입 하기!</v-btn>
+        </form>  
+            <v-btn :disabled="loading"
+                    class="ma-1"
+                    color="grey"
+                    plain @click="$router.push('/')">취소</v-btn>
+            <v-btn :disabled="loading"
+                    class="ma-1"
+                    color="grey"
+                    plain @click="submit">회원가입</v-btn>
+        </v-card>
     </v-container>
 </template>
 
@@ -64,4 +72,22 @@ export default {
 /*form, table, td {*/
 /*    border: black 1px solid;*/
 /*}*/
+.background{
+  background: linear-gradient(-45deg, #f3f5f0 50%, #dfe8eb 50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+}
+.box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
+/* v-btn{
+  border: none;
+  box-shadow: none;
+} */
 </style>
